@@ -3,7 +3,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
-const jiberish = require('/Users/Cary/Documents/codingBootcamp/homeworks/FriendFinder/app/data/friends');
+const jiberish = require('./app/data/friends');
 
 
 // Sets up the Express App
