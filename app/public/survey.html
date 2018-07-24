@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Friend Maker</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Friendship Aggregator</h1>
+      <h3>Take this quiz and find out who you share most in common with!</h3>
+      <hr>
+      <a href="/">
+        <button class="btn btn-danger btn-lg">
+          <span class="fa"></span> Return to Main</button>
+      </a>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <strong>The Quiz</strong>
+            </h3>
+           
+          </div>
+          <div class="panel-body">
+            <form method="POST" role="form">
+              <div class="form-group">
+                <label for="name">What is you name?</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="image">Choose an Image:</label>
+                <input type="text" class="form-control" id="image">
+              </div>
+              <!-- //add images 1-5 -->
+              <p>Rate each category from 1 to 5. 1 would be least interest, 5 would be most interest</p>
+              <div class="form-group">
+                <label for="books">How do you feel about reading books?</label>
+                <input type="number" class="form-control" id="books">
+              </div>
+
+              <div class="form-group">
+                <label for="outdoors">Do you enjoy the outdoors? Camping, hiking, fishing, boating ..</label>
+                <input type="number" class="form-control" id="outdoors">
+              </div>
+
+              <div class="form-group">
+                <label for="travel">How do you feel about traveling a lot?</label>
+                <input type="number" class="form-control" id="travel">
+              </div>
+
+              <div class="form-group">
+                <label for="tv">How much do you like to watch TV?</label>
+                <input type="number" class="form-control" id="tv">
+              </div>
+              <div class="form-group">
+                <label for="video">How much do you like to play video games?</label>
+                <input type="number" class="form-control" id="video">
+              </div>
+              <div class="form-group">
+                <label for="shop">How much do you enjoy shopping online?</label>
+                <input type="number" class="form-control" id="shop">
+              </div>
+              <div class="form-group">
+                <label for="news">How much do you pay attention to the news?</label>
+                <input type="number" class="form-control" id="news">
+              </div>
+              <div class="form-group">
+                <label for="friends">How much do you enjoy spending time with friends?</label>
+                <input type="number" class="form-control" id="friends">
+              </div>
+              <div class="form-group">
+                <label for="family">How much do you enjoy spending time with family?</label>
+                <input type="number" class="form-control" id="family">
+              </div>
+              <div class="form-group">
+                <label for="pets">How do you feel about pets?</label>
+                <input type="number" class="form-control" id="pets">
+              </div>
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="results">
+                <span class="fa fa-fire"></span>See the Results!</button>
+            </div>
+            <p> </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Results!!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id= "modal">
+         Anything
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal -->
+
+  <script type="text/javascript">
+
+    $("#results").on("click", function (event) {
+      event.preventDefault();
+    
+      var name = $("#name").val().trim();
+      var image = (parseInt($("#books").val().trim(), 10));
+      var scores = [];
+    
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+      scores.push(parseInt($("#books").val().trim(), 10));
+
+      var newSubmission = {
+        name: name,
+        photo: image,
+        scores: scores
+
+      };
+
+      $.post("/api/submission", newSubmission).then(function (data) {
+          alert(data.retVal);
+          $('#myModal').modal('show')
+          //failed to get modal to display
+        });
+        
+     
+  
+    });
+  </script>
+
+</body>
+
+</html>
