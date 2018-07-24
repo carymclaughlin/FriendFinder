@@ -1,0 +1,6 @@
+{
+    "name": "Friend Finder",
+    "description": "Finds friends by comparing ratings",
+    "repository" : "https://github.com/carymclaughlin/FriendFinder",
+    "keywords" : ["node", "express", "static"],
+}
